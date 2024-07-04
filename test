@@ -1,0 +1,31 @@
+include makefilecfg
+
+cc = gcc
+ProgramName=calculator.exe
+INCS = -I./include
+SRC = ./src/ 
+obj=./bin/
+exe=./build/
+
+for i in $(SRC*.c) 
+do 
+	$(sourcfiles) = $(i)
+done 
+
+objectfiles = obj*.o
+objectfiles = $(patsubst .c,.o,$(sourcefiles))
+
+
+
+all : $(ProgramName)
+
+obj%.o:SRC%.c
+	cc -c $^
+	
+$(ProgramName):$(objectfiles)
+	cc $(INCS) $^ -o exe$(ProgramName)
+	
+
+
+
+	
