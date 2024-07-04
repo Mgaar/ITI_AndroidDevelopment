@@ -6,7 +6,7 @@
 
 3 - rm removes each specified file
 
-    rmdir removes empty dirictories
+rmdir removes empty dirictories
     
 4-
 
