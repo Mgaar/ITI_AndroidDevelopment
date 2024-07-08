@@ -4,4 +4,4 @@ it will be executed from any location because when shell passes the process to t
 
 it will find it and execute it anywhere 
 
-	![alt text](image.jpg)
+![alt text](image.jpg)
