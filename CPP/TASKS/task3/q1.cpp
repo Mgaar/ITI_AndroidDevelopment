@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-class Vertex {
+struct Vertex {
     private :
     int x;
     int y;
