@@ -1,0 +1,53 @@
+cc ?= gcc
+ProgramName=calculator.out
+INCS = -I./Includes
+SRC = ./src/
+obj=./bin/
+exe=./build/
+
+StaticLib=./staticlib/
+Static=libmycollection.a
+
+DynamicLib=./dynamiclib/
+Dynamic=libmycollection.so
+
+dynamicobjects=./bindynamic/
+sourcfiles=$(wildcard $(SRC)*.c)
+
+objectfiles=$(patsubst $(SRC)%.c,$(obj)%.o,$(sourcfiles))
+
+dynamicobjectfiles=$(patsubst $(SRC)%.c,$(dynamicobjects)%.o,$(sourcfiles))
+
+APP=./app/
+mainbin=./mainbin/
+
+$(obj)%.o:$(SRC)%.c
+	if ! [ -d $(obj) ] ; then mkdir $(obj) ; fi
+	$(cc) $(INCS) -c $< -o $@
+
+$(mainbin)main.o:$(APP)main.c
+	if ! [ -d $(mainbin) ] ; then mkdir $(mainbin) ; fi
+	$(cc) $(INCS) -c $< -o $@
+
+$(dynamicobjects)%.o:$(SRC)%.c
+	if ! [ -d $(dynamicobjects) ] ; then mkdir $(dynamicobjects) ; fi
+	$(cc) -c -fpic -o $@ $<
+
+$(ProgramName):$(objectfiles)
+	if ! [ -d $(exe) ] ; then mkdir $(exe) ; fi
+	$(cc) $(INCS) $(objectfiles) $(mainbin)main.o -o $(exe)$(ProgramName)
+
+$(StaticLib)$(Static):$(objectfiles)
+	if ! [ -d $(StaticLib) ] ; then mkdir $(StaticLib) ; fi
+	ar -rcs $@ $^
+
+dynamico:
+	$(cc) -c -fPIC $(sourcfiles)
+
+$(DynamicLib)$(Dynamic):$(dynamicobjectfiles)
+	if ! [ -d $(DynamicLib) ] ; then mkdir $(DynamicLib) ; fi
+	$(cc) -shared -o $@ $^
+
+.PHONY: clean
+clean:
+	rm -f $(obj)*.o $(exe)*.out $(StaticLib)$(Static) $(DynamicLib)$(Dynamic) $(dynamicobjects)*.o $(mainbin)main.o
