@@ -10,6 +10,7 @@ then partition the virtual sd card
 
 then mount them
 ` sudo mount /dev/loop22p1 ~/boot`
+
  `sudo mount /dev/loop22p2 ~/rootfs`
 
 ![alt text](./images/image1.png)
@@ -32,6 +33,7 @@ also we should edit the bootcmd so that it loads the script into ram and execute
 ![alt text](./images/image2.png)
 
 so when we run qemu 
+
 ![alt text](./images/image5.png)
 
 to boot from server using tftp 
