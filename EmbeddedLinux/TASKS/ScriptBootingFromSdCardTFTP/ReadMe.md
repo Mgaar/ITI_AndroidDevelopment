@@ -9,7 +9,7 @@ then partition the sd card
 `sudo mkfs.ext4 -L rootfs /dev/loop22p2`
 
 then mount them
-` sudo mount /dev/loop22p1 ~/boot
- sudo mount /dev/loop22p2 ~/rootfs`
+` sudo mount /dev/loop22p1 ~/boot`
+ `sudo mount /dev/loop22p2 ~/rootfs`
 
 ![alt text](./images/image1.png)
