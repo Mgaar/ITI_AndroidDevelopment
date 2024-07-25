@@ -1,0 +1,16 @@
+if mmc dev ;then 
+    echo sd card found 
+    echo loading zImage 
+    fatload mmc 0:1 ${kernel_addr_r} zImage 
+    echo loading dtb 
+    fatload mmc 0:1 ${fdt_addr_r} file.dtb 
+    echo done loading from sd card 
+ bootz ${kernel_addr_r} - ${fdt_addr_r}
+elif ping ${serverip}; then
+    echo loading from network
+    tftp ${kernel_addr_r} zImage
+    tftp ${fdt_addr_r} file.dtb
+    bootz ${kernel_addr_r} - ${fdt_addr_r}
+else
+    echo no sd card or network connection
+fi
