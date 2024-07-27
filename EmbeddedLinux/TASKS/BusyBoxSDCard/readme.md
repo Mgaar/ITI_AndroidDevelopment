@@ -19,3 +19,4 @@ busybox: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically link
 You will probably need to make your busybox binarysetuid root to ensure all configured applets will work properly.'
 
 
+![Screenshot from 2024-07-28 00-13-53](https://github.com/user-attachments/assets/e75bd772-4f97-49fd-9bbe-599aaced2da0)
