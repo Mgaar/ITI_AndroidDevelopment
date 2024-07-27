@@ -79,3 +79,18 @@ now we are allmost done final thing is all those files owned by user chown to ro
 
 and finally mount the sd card copy / rsync the rootfs to the ext4 and make sure zImage and dtb file are in the fat part
 
+launch qemu and edit bootargs 
+
+`setenv bootargs 'console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait init=/sbin/init' `
+
+also set the kerenel address and the fdt and fatload them 
+
+
+finally 
+
+`bootz $kernel_addr_r - $fdt_addr_r`
+
+![Screenshot from 2024-07-28 02-14-44](https://github.com/user-attachments/assets/524c0d46-6c0c-4841-9149-bec4f160e723)
+
+![Screenshot from 2024-07-28 02-11-08](https://github.com/user-attachments/assets/75765020-db29-45ac-b4c3-deb7d6320eeb)
+
