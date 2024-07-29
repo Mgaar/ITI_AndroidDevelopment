@@ -31,3 +31,48 @@ bootz $kernel_addr_r $initramfs $fdt_addr_r
 ![Screenshot from 2024-07-28 16-56-48](https://github.com/user-attachments/assets/bcda658d-abaf-456d-8614-b7a3ea815293)
 
 
+# dual boot
+
+create another ext 4 partition mount it and put a rootfs on it 
+
+make a script to ask user to choose which root to boot on but first mount the 2 memory blocks 
+
+```
+mkdir mnt/boot
+mkdir mnt/rootfs1
+mkdir mnt/rootfs2
+
+mount -t ext4 /dev/mmcblk0p1 /mnt/boot
+mount -t ext4 /dev/mmcblk0p2 /mnt/rootfs1
+mount -t ext4 /dev/mmcblk0p3 /mnt/rootfs2
+
+echo "You have 3 options:"
+echo "1) Mount and chroot to rootfs_one"
+echo "2) Mount and chroot to rootfs_two"
+echo "3) Open initram shell"
+
+read -p "Please choose an option (1-3): " choice
+
+# Handle the user's choice using a case statement
+case $choice in
+    1)
+        chroot /mnt/boot
+        ;;
+    2)
+        chroot /mnt/rootfs1
+        ;;
+    3)
+        /bin/sh
+        ;;
+    *)
+        echo "Invalid option. Please choose 1, 2, or 3."
+        ;;
+esac
+
+echo "Exiting script."
+```
+
+run this script through rcS 
+![Uploading Screenshot from 2024-07-29 15-48-53.png…]()
+
+
