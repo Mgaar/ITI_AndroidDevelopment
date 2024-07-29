@@ -73,6 +73,7 @@ echo "Exiting script."
 ```
 
 run this script through rcS 
-![Uploading Screenshot from 2024-07-29 15-48-53.png…]()
 
 
+
+![Screenshot from 2024-07-29 15-48-53](https://github.com/user-attachments/assets/5fcaa569-e1c4-42a1-a05a-fae4a763713e)
