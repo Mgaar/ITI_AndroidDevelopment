@@ -56,10 +56,10 @@ read -p "Please choose an option (1-3): " choice
 # Handle the user's choice using a case statement
 case $choice in
     1)
-        chroot /mnt/boot
+        chroot /mnt/rootfs1
         ;;
     2)
-        chroot /mnt/rootfs1
+        chroot /mnt/rootfs2
         ;;
     3)
         /bin/sh
