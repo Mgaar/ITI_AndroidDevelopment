@@ -38,9 +38,9 @@ create another ext 4 partition mount it and put a rootfs on it
 make a script to ask user to choose which root to boot on but first mount the 2 memory blocks 
 
 ```
-mkdir mnt/boot
-mkdir mnt/rootfs1
-mkdir mnt/rootfs2
+mkdir /mnt/boot
+mkdir /mnt/rootfs1
+mkdir /mnt/rootfs2
 
 mount -t ext4 /dev/mmcblk0p1 /mnt/boot
 mount -t ext4 /dev/mmcblk0p2 /mnt/rootfs1
