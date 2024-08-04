@@ -23,7 +23,7 @@ then we need to create script on init.d that starts and kills this process
 case "$1" in
       start)
            echo "Starting deamonapp........."
-           start-stop-daemon -S -n deamonapp -a /bin/hideamon.sh &
+           start-stop-daemon -S -n hidaemon.sh -a /bin/hideamon.sh &
            ;;
      stop)
            echo "Stopping deamonapp........."
@@ -38,8 +38,6 @@ exit 0
 ```
 
 also it must be excutable 
-
-![Screenshot from 2024-08-05 00-43-32](https://github.com/user-attachments/assets/c80d631e-b8f9-46ec-94e2-98368f446ab5)
 
 then we need to craete the run level directories and soft link to this script one to kill other to start 
 
