@@ -1,0 +1,5 @@
+config BR2_PACKAGE_myapp
+bool "myapp"
+
+help
+simple program that prints Hello World! 
