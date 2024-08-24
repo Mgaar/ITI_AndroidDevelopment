@@ -56,3 +56,49 @@ the script checks if the gpio pin is exported if not it exports it and sets pin 
 then tries to ping on IP 3 times if failed to ping sets gpio pin to high else sets to low 
 
 now we need to create our reciepe to include this script to our rfs 
+
+```
+SUMMARY = "meta -iti layers recipe"
+DESCRIPTION = "a simple sh script to turn led on if failed to ping"
+
+LICENSE = "CLOSED"
+
+SRC_URI = "file://${THISDIR}/pingscript.sh"
+FILESPATH:append = " /home/mohamed/Desktop/Yocto/meta-iti/recipes-pingled/pingled/"
+inherit systemd
+
+SYSTEMD_AUTO_ENABLE = "enable"
+SYSTEMD_SERVICE = "myservice.service"
+
+do_install (){
+    mkdir -p /home/mohamed/Desktop/Yocto/poky/build/tmp-glibc/work/cortexa7t2hf-neon-vfpv4-oe-linux-gnueabi/pingled/1.0-r0/image/usr/bin/
+    cp ${THISDIR}/pingscript.sh ${D}${bindir}/
+    install -d ${D}/${sysconfdir}/systemd/system/
+    install -m 0755 ${THISDIR}/myservice.service ${D}/${sysconfdir}/systemd/system/
+}
+
+
+
+
+```
+
+systemd service 
+
+myservice.service 
+
+```
+[Unit]
+
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pingled.sh
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+now `bitbake -k core-image-sato` and test the output on raspberrypi
