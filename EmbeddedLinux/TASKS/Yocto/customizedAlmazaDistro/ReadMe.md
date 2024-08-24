@@ -46,3 +46,13 @@ else
 echo 1 > /sys/class/gpio/gpio${PIN_NUMB}/value
 fi
 ```
+
+script explantation :
+
+it is a sh script that takes a gpio pin and a IP address to ping on and see if it is avaliable on network 
+
+the script checks if the gpio pin is exported if not it exports it and sets pin direction to out 
+
+then tries to ping on IP 3 times if failed to ping sets gpio pin to high else sets to low 
+
+now we need to create our reciepe to include this script to our rfs 
